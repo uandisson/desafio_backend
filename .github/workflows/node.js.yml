@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ master ]
 
+defaults:
+  run:
+    working-directory: ./frontend-vue  
+
 jobs:
   build:
 
@@ -24,8 +28,7 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - working-directory: ./frontend-vue  
+        node-version: ${{ matrix.node-version }}    
     - run: |
         npm install
         npm run dev
