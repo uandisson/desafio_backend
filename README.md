@@ -80,7 +80,7 @@ curl --request POST \
 - Flask 
 - Docker
 
-## ( 1 ) - Clone Repositorio:
+## 1 - Clone Repositorio:
 
     $ git clone https://github.com/uandisson/desafio_backend.git
      
@@ -95,7 +95,7 @@ curl --request POST \
     $ cd backend-python/credito-express-app/
     $ sudo docker-compose build
 
-    Casso der erro:
+    Caso der erro:
 
       $ docker-compose build
 ERROR: Couldn't connect to Docker daemon at http+docker://localhost - is it running?
@@ -191,3 +191,40 @@ in the browswer:
 
 ![](imgs/readme_assets/01.png)
 
+
+# Frontend-Vue
+
+## Requisitos
+
+- Node 14
+- Vue JS
+- Docker (opcional) -> recomendado
+
+## Executar sem Docker
+
+Instalar dependências
+    
+    $ npm install
+
+Executar
+
+    $ npm run dev
+    
+## Executar com Docker
+
+Iniciar e Debugar
+
+    $ cd frontend-vue/
+    $ sudo docker-compose up
+
+## URL -> : http://127.0.0.1:8080
+
+Tela inicial
+
+![](imgs/readme_assets/f01.png)
+
+Simulação
+
+![](imgs/readme_assets/f02.png)
+
+![](imgs/readme_assets/f03.png)
