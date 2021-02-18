@@ -1,54 +1,156 @@
-# Desafio Backend
+## Sobre a Crédito Express
 
-## Requirements
+A Crédito Express é uma fintech voltada para servir instituições financeiras. Nosso objetivo é levar TAXAS ATRATIVAS para as pessoas, a partir do uso de tecnologia de ponta.
+
+VENHA FAZER PARTE DESSA REVOLUÇÃO FINANCEIRA!
+
+
+## Sobre o desafio
+
+Com o aumento dos casos de COVID-19 muitos cidadãos tiveram aumentos nos gastos e redução nos ganhos, levando a eles endividarem-se em meios que as taxas de juros são extremamente altas. Neste desafio você deve construir uma aplicação para pessoas possam simular empréstimos com as melhores taxas do mercado financeiro.
+
+A aplicação deve ter uma API para o cliente informar o seu CPF e numero de celular para se identificar e depois disso ele poderá efetuar simulações de empréstimo em outra API. Para simular é necessário informar o valor do empréstimo e o número de parcelas, sendo que podem ser 6, 12, 18, 24 ou 36.
+
+Existe uma tabela de taxas, o calculo do empréstimo deve ser feito de acordo com ela. Existem 3 tipos diferentes de taxas: **negativado, score alto e score baixo**. Pessoas com score acima de 500 são consideradas com score alto nessa aplicação, pessoas sem cadastro na base recebem score 0.
+
+Após obter o valor da taxa a ser aplicada para esse cliente, será necessário chamar uma API para fazer o cálculo da simulação. Os dados retornados pelo cálculo devem ser o retorno da sua API.
+
+
+## Considerações
+
+- O arquivo taxas.json possui uma coleção de taxas por característica. Os dados seguem o formato do exemplo abaixo, mas pode modificar a estrutura no seu projeto se precisar:
+
+```javascript
+  {
+	"tipo": "NEGATIVADO",
+	"taxas": {"6": 0.04, "12": 0.045, "18": 0.05, "24": 0.053, "36": 0.055}
+  }
+```
+- O arquivo clientes.json possui uma coleção de objetos que representam os clientes que já tem pré-cadastro. Abaixo temos um exemplo do formato do objeto que também pode ter a estrutura modificada caso julgue necessário.
+
+```javascript
+{
+	"nome": "Roberto Filipe Figueiredo",
+	"cpf": "41882728564",
+	"celular": "6526332774",
+	"score": 300,
+	"negativado": false
+}
+```
+
+- Abaixo temos um exemplo de um CURL para API de cálculo.
+
+```shell
+curl --request POST \
+  --url https://us-central1-creditoexpress-dev.cloudfunctions.net/teste-backend \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"numeroParcelas": 12,
+	"valor": 10000,
+	"taxaJuros": 0.04
+}'
+```
+
+### Pré-requisitos
+- Desenvolvimento de API REST em Python;
+- Utilização do MongoDB;
+- Desenvolvimento de um Dockerfile/Docker-Compose.yml para rodar o projeto;
+- Documentar como rodamos o projeto no README.MD;
+
+### Diferenciais/Extras
+- Implementação de Testes de unidade e/ou integração;
+- Clean code;
+- Segurança e resiliência;
+- Utilização de padrões de projeto;
+- Migrations e/ou seeders;
+- Script para execução da aplicação;
+
+## Pronto para começar o desafio?
+
+- Faça um "fork" deste repositório na sua conta do Github;
+- Após completar o desafio, crie um pull request nesse repositório comparando a sua branch com a master com o seu nome no título;
+
+
+
+# Uandisson Miranda
+
+## Requisitos
+
 - Python 3.8
 - Flask 
 - Docker
 
-## 1 - Clone repo:
+## ( 1 ) - Clone Repositorio:
+
     $ git clone https://github.com/uandisson/desafio_backend.git
      
-## 2 - Build : (optional) 
-    $ cd app/
-    $ docker-compose build
+## 2 - Buildar o Projeto se quiser !
+
+    obs: Tenha as devidas pastas no seu linux, e nem tente roda no Windows pois o Windows e para os fracos.
+
+    #mkdir /opt/credito-express-app/dev/api
+    #chmod +x /opt/credito-express-app/dev/api
+    #chmod 777 /opt/credito-express-app/dev/api
+
+    $ cd backend-python/credito-express-app/
+    $ sudo docker-compose build
+
+    Casso der erro:
+
+      $ docker-compose build
+ERROR: Couldn't connect to Docker daemon at http+docker://localhost - is it running?
+
+If it's at a non-standard location, specify the URL with the DOCKER_HOST environment variable.
+
+    Instalando Composer:
+
+    0 - sudo service docker status
+    
+    1 - sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    2 - sudo chmod +x /usr/local/bin/docker-compose
+    3 - docker-compose --version
+
+    Instalando Docker:
+
+    1 - sudo apt-get update -y
+    2 - sudo apt-get install -y linux-image-generic-lts-trusty linux-headers-generic-lts-trusty
+    3 - sudo apt-get install -y xserver-xorg-lts-trusty libgl1-mesa-glx-lts-trusty
+    4 - sudo reboot
+    5 - sudo apt-get purge -y lxc-docker* && sudo apt-get -y purge docker.io*
+    6 - sudo apt-get update -y && sudo apt-get install -y apt-transport-https ca-certificates
+    7 - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+    8 - sudo apt-get update -y
+    9 - sudo apt-cache policy docker-engine 
+    10 - sudo apt-get update -y && sudo apt-get install -y linux-image-extra-$(uname -r)
+    11 - sudo apt-get install docker-engine -y
+    12 - sudo service docker start   
+    13 - sudo docker run hello-world
+    14 - docker -v
      
-## 3 - Start and debug:
-    $ cd app/
-    $ docker-compose up
+## 3 - Iniciar e Debugar
 
-## 4 - If all is well, in the browser: http://127.0.0.1:5000/
+    $ cd backend-python/credito-express-app/
+    $ sudo docker-compose up
 
-![](imgs/readme_assets/00.png)
+## 4 - URL -> : http://127.0.0.1:5000/
 
-## 5 - MongoDB config
-    $ docker exec -it desafio_backend_mongo bash
+![](imagens/assets/00.png)
+
+## 5 - **Em caso de erro na criação do banco de dados**: Cconfiguração do banco de dados MongoDB
+
+    $ docker exec -it credito_express_mongo bash
     $ mongo -u admin -p
-    $ mongodb> use desafiodb
-    $ mongodb> db.createUser({user: 'admin', pwd: 'admin', roles: [{role: 'readWrite', db: 'desafiodb'}]})
+    $ mongodb> use creditoexpressdb
+    $ mongodb> db.createUser({user: 'admin', pwd: 'admin', roles: [{role: 'readWrite', db: 'creditoexpressdb'}]})
     $ mongodb> exit
-    $ mongo -u admin -p your admin --authenticationDatabase desafiodb
+    $ mongo -u admin -p admin --authenticationDatabase creditoexpressdb
     $ mongodb> exit
     $ exit
 
-## 6 - On the first run (only), uncomment this excerpt in the app.py file to import the json from the /app/data/ folder
 
-    import json
+## Estrutura
 
-    collection_clientes = db['clientes']
-    collection_taxas = db['taxas']
-
-    with open('data/clientes.json') as f:
-        file_data = json.load(f)
-
-    collection_clientes.insert_many(file_data)
-
-    with open('data/taxas.json') as f:
-        file_data = json.load(f)
-
-    collection_taxas.insert_many(file_data)
-
-
-## Structure
+![](imgs/readme_assets/arquitetura.jpeg)
 
 Endpoint |HTTP Method | CRUD Method | Result
 -- | -- |-- |--
@@ -56,11 +158,11 @@ Endpoint |HTTP Method | CRUD Method | Result
 `loan`| POST | READ | Get Tax Customer
 `simulation`| POST | READ | Get Amount, Tax and Fees Customer
 
-## Use
+## Como usar ?
 
 Check customer:
 ```
-	curl -i -H "Content-Type: application/json" -X POST -d '{"cpf": "93762814031", "phone_number": "71935228778"}' http://127.0.0.1:5000/login
+	curl -i -H "Content-Type: application/json" -X POST -d '{"cpf": "93762814031", "phone_number": "71935228778"}' http://127.0.0.1:5000/api/v1/login
 
 ```
 get:
@@ -74,7 +176,7 @@ get:
 
 do simulation:
 ```
-    curl -i -H "Content-Type: application/json" -X POST -d '{"loan_value": "1000.0", "tax": "0.45", "installments": "6"}' http://127.0.0.1:5000/simulation
+    curl -i -H "Content-Type: application/json" -X POST -d '{"loan_value": "1000.0", "tax": "0.45", "installments": "6"}' http://127.0.0.1:5000/api/v1/simulation
 ```
 get:
 ```

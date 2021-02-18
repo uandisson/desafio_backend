@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+ backend:
+  container_name: credito_express_api
+  build: .
+  command: export FLASK_ENV=development
+  command: python3 -u credito_express_app.py
+  environment:
+      - FLASK_ENV=development
+      - APP_DEBUG=True
+      - APP_PORT=5000
+      - MONGODB_DATABASE=creditoexpressdb
+      - MONGODB_USERNAME=admin
+      - MONGODB_PASSWORD=admin
+      - MONGODB_HOSTNAME=db
+  ports:
+    - "5000:5000"
+  command: gunicorn -w 1 -b :5000 credito_express_app
+  volumes:
+    - .:/opt/credito-express-app/dev/api
+  links:
+    - db
+  networks:
+    - backend-nt
+
+ db:
+  image: mongo:4.2
+  container_name: credito_express_mongo
+  environment:
+    MONGO_INITDB_ROOT_USERNAME: admin
+    MONGO_INITDB_ROOT_PASSWORD: admin
+    MONGO_INITDB_DATABASE: creditoexpressdb
+    MONGODB_DATA_DIR: /data/db
+    MONDODB_LOG_DIR: /dev/null  
+  volumes:
+    - .:/opt/credito-express-app/dev/api/data 
+    - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+
+  networks:
+    - backend-nt
+
+networks:
+  backend-nt:
+    driver: bridge
