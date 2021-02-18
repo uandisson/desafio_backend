@@ -134,9 +134,9 @@ If it's at a non-standard location, specify the URL with the DOCKER_HOST environ
 
 ## 4 - URL -> : http://127.0.0.1:5000/
 
-![](imagens/assets/00.png)
+![](imgs/readme_assets/00.png)
 
-## 5 - **Em caso de erro na criação do banco de dados**: Cconfiguração do banco de dados MongoDB
+## 5 - **Em caso de erro na criação do banco de dados**: Configuração do banco de dados MongoDB
 
     $ docker exec -it credito_express_mongo bash
     $ mongo -u admin -p
