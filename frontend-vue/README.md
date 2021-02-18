@@ -27,10 +27,10 @@ Iniciar e Debugar
 
 Tela inicial
 
-![](imgs/readme_assets/f01.png)
+![](../imgs/readme_assets/f01.png)
 
 Simulação
 
-![](imgs/readme_assets/f02.png)
+![](../imgs/readme_assets/f02.png)
 
-![](imgs/readme_assets/f03.png)
+![](../imgs/readme_assets/f03.png)
