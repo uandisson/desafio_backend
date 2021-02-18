@@ -25,6 +25,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - working-directory: ./frontend-vue  
     - run: |
         npm install
         npm run dev
