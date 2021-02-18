@@ -41,7 +41,8 @@ def login():
 
 @application.route('/api/v1/customers', methods=['GET'])
 def customers():
-    _clientes = db.clientes.find()
+    log.info('API call get customers')
+    _clientes = db.clientes.find().limit(10)
      
     data = json.loads( json_util.dumps(_clientes))
 
