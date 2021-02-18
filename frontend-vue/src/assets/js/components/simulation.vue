@@ -31,7 +31,6 @@
 
                 <div class="form-group">
                     <label name="loan_installments">Número de Parcelas</label>
-                    <!-- <input type="text" class="form-control" v-model="loan.installments" id="loan_installments" required> -->
                     <select class="form-control" id="loan_installments" name="installments" v-model="loan.installments">
                         <option value="6">6x</option>
                         <option value="12">12x</option>
@@ -46,8 +45,6 @@
                 </div>
             </form>
          </modal>
-
-
     </div>
 </template>
 
@@ -56,7 +53,6 @@
 <script>
     import Notification from './notifications.vue';
     import modal from "./modal-loan.vue";
-
 
     export default{
         data(){
