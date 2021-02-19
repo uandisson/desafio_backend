@@ -70,9 +70,9 @@ def checkLogin(data):
     phone_number = data['phone_number']
     
     if data['cpf'] is not None and data['phone_number'] is not None:
-        custumer = Clientes.objects.get(cpf=cpf, celular=phone_number)
-        
-        if custumer:
-            return jsonify(status=True, message='Ok, find custumer')
-
-    return jsonify(status=False, message="no found custumer for cpf: {} and phone number: {}".format(cpf, phone_number))
+        try:
+            custumer = Clientes.objects.get(cpf=cpf, celular=phone_number)
+            if custumer:
+                return jsonify(status=True, message='Ok, find custumer')
+        except Clientes.DoesNotExist:
+            return jsonify(status=False, message="no found custumer for cpf: {} and phone number: {}".format(cpf, phone_number))

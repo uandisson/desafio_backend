@@ -39,22 +39,30 @@ class LoanCollection(Resource):
             installments = data['installments']
 
             if cpf is not None and phone_number is not None:
-                custumer = Clientes.objects.get(cpf=cpf, celular=phone_number)
+                tax_type = ''
                 
-                if custumer:
-                    score = custumer['score']
-                    negative = custumer['negativado']
-                    tax_type = 'SCORE_BAIXO'
+                try:   
+                    custumer = Clientes.objects.get(cpf=cpf, celular=phone_number)
                     
-                    if negative is True:
-                        tax_type = 'NEGATIVADO'
-                    else:
-                        if int(score) > 500:
-                            tax_type = 'SCORE_ALTO'
-        
-                    tax = Taxas.objects.get(tipo= tax_type)
-                    if tax:
-                        taxs = tax['taxas']
-                        return jsonify(status=True, data=taxs[installments])
+                    if custumer:
+                        score = custumer['score']
+                        negative = custumer['negativado']
+                        tax_type = 'SCORE_BAIXO'
+                        
+                        if negative is True:
+                            tax_type = 'NEGATIVADO'
+                        else:
+                            if int(score) > 500:
+                                tax_type = 'SCORE_ALTO'
             
+                        tax = Taxas.objects.get(tipo= tax_type)
+                        if tax:
+                            taxs = tax['taxas']
+                            return jsonify(status=True, data=taxs[installments])
+                
+                except Clientes.DoesNotExist:
+                    return jsonify(status=False, message="not found custumer for cpf: {} and phone number: {}".format(cpf, phone_number))
+                except Taxas.DoesNotExist:
+                    return jsonify(status=False, message="not found tax for tipo: {}".format(tax_type))
+                
             return jsonify(status=False, data='Error')    
