@@ -23,7 +23,7 @@ RUN pip3 install Werkzeug==0.16.1
 RUN pip3 install requests
 RUN pip3 install gunicorn
 RUN pip3 install apispec
-RUN pip3 install Flask-SocketIO
+RUN pip3 install flask-mongoengine
 
 ##################################################
 #Pastas que devem existir                        #

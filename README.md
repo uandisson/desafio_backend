@@ -132,9 +132,9 @@ If it's at a non-standard location, specify the URL with the DOCKER_HOST environ
     $ cd backend-python/credito-express-app/
     $ sudo docker-compose up
 
-## 4 - URL -> : http://127.0.0.1:5000/
+## 4 - URL -> : http://127.0.0.1:5000
 
-![](imgs/readme_assets/00.png)
+![](imgs/readme_assets/02.png)
 
 ## 5 - **Em caso de erro na criação do banco de dados**: Configuração do banco de dados MongoDB
 
@@ -150,11 +150,10 @@ If it's at a non-standard location, specify the URL with the DOCKER_HOST environ
 
 ## Estrutura
 
-![](imgs/readme_assets/arquitetura.jpeg)
-
 Endpoint |HTTP Method | CRUD Method | Result
 -- | -- |-- |--
 `login` | POST | READ | Login customer
+`login/async` | POST | READ | Login customer - asynchronous request
 `loan`| POST | READ | Get Tax Customer
 `simulation`| POST | READ | Get Amount, Tax and Fees Customer
 
@@ -187,10 +186,26 @@ get:
 
 ```
 
-in the browswer:
+in the browswer: http://127.0.0.1:5000/index
 
 ![](imgs/readme_assets/01.png)
 
+### Swagger
+```
+http://127.0.0.1:5000
+
+http://127.0.0.1:5000/swagger.json
+
+```
+
+Swagger in the browser
+
+Emdpoints
+![](imgs/readme_assets/02.png)
+
+Models
+
+![](imgs/readme_assets/03.png)
 
 # Frontend-Vue
 
