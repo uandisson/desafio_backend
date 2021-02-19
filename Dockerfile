@@ -1,5 +1,5 @@
 FROM python:3-slim AS builder
-ADD . /credito-express-app
+COPY /backend-python/credito-express-app/test_action.py /credito-express-app/test_action.py
 WORKDIR /credito-express-app
 
 RUN pip install --target=/credito-express-app requests
