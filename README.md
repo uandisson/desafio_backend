@@ -1,3 +1,10 @@
+## Desafio Backend Python
+
+
+[![Actions Status](https://github.com/uandisson/desafio_backend/workflows/Lint/badge.svg
+)](https://github.com/uandisson/desafio_backend/actions)
+[![Actions Status](https://github.com/uandisson/desafio_backend/workflows/Python%20Integration%20Test/badge.svg)](https://github.com/uandisson/desafio_backend/actions)
+
 ## Sobre a Crédito Express
 
 A Crédito Express é uma fintech voltada para servir instituições financeiras. Nosso objetivo é levar TAXAS ATRATIVAS para as pessoas, a partir do uso de tecnologia de ponta.
