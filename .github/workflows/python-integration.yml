@@ -1,0 +1,24 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python Integration Test
+
+on: [push]
+
+defaults:
+  run:
+    working-directory: ./backend-python/credito-express-app  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Self test
+        id: selftest
+        
+        uses: uandisson/desafio_backend@master
+
+      - name: Check outputs
+        run: |
+          test "${{ steps.selftest.outputs.testOutput }}" == "Crédito Express APP"        
