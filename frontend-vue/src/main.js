@@ -6,6 +6,9 @@ Vue.use(VueRouter)
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
+
 import App from './App.vue'
 
 const AllCustumers = require('./assets/js/components/customer/all-customers.vue');

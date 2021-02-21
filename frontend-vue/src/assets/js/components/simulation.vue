@@ -1,25 +1,30 @@
 <template>
     <div id="simulation">
-        <h1>Simulation</h1>
+        <h1>Simulation with Customer</h1>
 
         <notification v-bind:notifications="notifications"></notification>
        
         <form v-on:submit.prevent="checkCustomer">
             <div class="form-group">
                 <label name="customer_cpf">CPF</label>
-                <input type="text" class="form-control" v-model="customer.cpf" id="customer_cpf" required >
+                <the-mask class="form-control" id="customer_cpf" required v-model="customer.cpf" :mask="['###.###.###-##']" />
             </div>
 
             <div class="form-group">
                 <label name="customer_phone_number">Celular</label>
-                <input type="text" class="form-control" v-model="customer.phone_number" id="customer_phone_number" required>
+                <the-mask class="form-control" id="customer_phone_number" required v-model="customer.phone_number" :mask="['(##) ####-####', '(##) #####-####']" />
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary">Verificar</button>
+                <button class="btn btn-primary">Login</button>
             </div>
         </form>
-
+        
+        <h1>Simulation without Customer</h1>
+        
+        <div class="form-group">
+            <button @click="showModel = true" class="btn btn-primary">Simulate</button>
+        </div>
         
          <modal v-if="showModel" @close="showModel = false">
             <notification v-bind:notifications="notificationsModal"></notification>
@@ -53,6 +58,7 @@
 <script>
     import Notification from './notifications.vue';
     import modal from "./modal-loan.vue";
+    import { API_URL } from './util/URL_API';
 
     export default{
         data(){
@@ -97,7 +103,7 @@
                 
                 var jsonData = '{"cpf": "' + this.customer.cpf + '", "phone_number": "'+ this.customer.phone_number +'"}'
 
-                this.$http.post('http://127.0.0.1:5000/api/v1/login', this.customer, {
+                this.$http.post(API_URL + '/login', this.customer, {
                     headers : {
                         'Content-Type' : 'application/json'
                     }, jsonData
@@ -141,7 +147,7 @@
                 
                 var jsonData = '{"cpf": "' + this.customer.cpf + '", "phone_number": "'+ this.customer.phone_number + '", "loan_value": "' + this.loan.loan_value + '", "installments": "' + this.loan.installments + '"}'
               
-                this.$http.post('http://127.0.0.1:5000/api/v1/loan', jsonData, {
+                this.$http.post(API_URL + '/loan', jsonData, {
                     headers : {
                         'Content-Type' : 'application/json'
                     }
@@ -165,7 +171,7 @@
             {
                 var jsonData = '{"loan_value": "' + loan_value + '", "installments": "'+ installments + '", "tax": "' + tax + '"}'
                 
-                this.$http.post('http://127.0.0.1:5000/api/v1/simulation', jsonData, {
+                this.$http.post(API_URL + '/simulation', jsonData, {
                     headers : {
                         'Content-Type' : 'application/json'
                     }

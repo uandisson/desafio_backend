@@ -1,6 +1,6 @@
 <template>
     <div id="all-customers">
-        <h1>All Customers</h1>
+        <h1><img src="src/assets/imgs/users.png" alt="Negativado" border=3 height=32px width=32px>All Customers</h1>
         
         <p><router-link :to="{ name: 'create_customer' }" class="btn btn-primary">Create Customer</router-link></p>
 
@@ -14,8 +14,8 @@
                 <td>Nome</td>
                 <td>CPF</td>
                 <td>Telefone</td>
-                <td>Score</td>
-                <td>Negativado</td>
+                <td>Score</td>  
+                <td>Status</td>                
             </tr>
             </thead>
 
@@ -25,7 +25,15 @@
                     <td>{{ customer.cpf }}</td>
                     <td>{{ customer.celular }}</td>
                     <td>{{ customer.score }}</td>
-                    <td>{{ customer.negativado }}</td>
+                    <td v-if="customer.negativado">
+                        <img src="src/assets/imgs/negativado.png" alt="Negativado" border=3 height=27px width=27px>
+                    </td>
+                    <td v-else-if="customer.score > 500">
+                        <img src="src/assets/imgs/socre_alto.png" alt="" border=3 height=27px width=27px>
+                    </td>
+                    <td v-else-if="customer.score < 500">
+                        <img src="src/assets/imgs/socre_baixo.png" alt="" border=3 height=27px width=27px>
+                    </td>
                     <td>
                         <router-link :to="{name: 'edit_customer', params: { cpf: customer.cpf }}" class="btn btn-primary">Edit</router-link>
                         <router-link :to="{name: 'delete_customer', params: { cpf: customer.cpf }}" class="btn btn-danger">Delete</router-link>
@@ -37,6 +45,7 @@
 </template>
 
 <script>
+    import { API_URL } from '../util/URL_API';
 
     export default{
         data(){
@@ -55,7 +64,7 @@
         methods: {
             fetchCustomerData: function()
             {
-                this.$http.get('http://localhost:5000/api/v1/customers').then((response) => {
+                this.$http.get(API_URL+'/customers').then((response) => {
                     console.log(response)
                     this.customers = response.body;
                     this.originalCustomers = this.customers;
