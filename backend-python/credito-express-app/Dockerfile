@@ -24,6 +24,7 @@ RUN pip3 install requests
 RUN pip3 install gunicorn
 RUN pip3 install apispec
 RUN pip3 install flask-mongoengine
+RUN pip install Flask-JWT-Extended
 
 ##################################################
 #Pastas que devem existir                        #

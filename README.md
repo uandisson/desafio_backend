@@ -169,7 +169,14 @@ Endpoint |HTTP Method | CRUD Method | Result
 
 Check customer:
 ```
-	curl -i -H "Content-Type: application/json" -X POST -d '{"cpf": "93762814031", "phone_number": "71935228778"}' http://127.0.0.1:5000/api/v1/login
+    {
+    "message": "Ok, find custumer", 
+    "status": true, 
+    "tokens": {
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYxMzkzNjU0NywianRpIjoiYjI1ZDAxMjYtN2IwMC00ZDdkLTk1NGMtNTQxNDNmNzM3ZDFjIiwibmJmIjoxNjEzOTM2NTQ3LCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoiOTM3NjI4MTQwMzEiLCJleHAiOjE2MTQwMjI5NDd9.KsAMmphy71g1nYQPD_wnQ1SsxJBrRGSQ--0r6a6BHCc", 
+        "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYxMzkzNjU0NywianRpIjoiYmE2NDg4ZDQtNWJjOC00ZDY0LTg2ZDQtYTljZWQxYzY2MzI3IiwibmJmIjoxNjEzOTM2NTQ3LCJ0eXBlIjoicmVmcmVzaCIsInN1YiI6IjkzNzYyODE0MDMxIiwiZXhwIjoxNjE0MDIyOTQ3fQ.jb1kIgJHMEOvgabvgjRCTbmA5FHz4hRBgBoVcxTZgpQ"
+    }
+    }	
 
 ```
 get:
@@ -192,6 +199,40 @@ get:
         "status": true
     }
 
+```
+
+tax
+```
+curl -i -H "Content-Type: application/json" -X POST -d '{"cpf": "93762814031", "phone_number": "71935228778", "installments": "6"}' http://127.0.0.1:5000/api/v1/loan
+```
+get
+```
+    {
+    "data": 0.04, 
+    "status": true
+    }
+
+```
+
+tax with JWT
+```
+curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYxMzkzNjU0NywianRpIjoiYjI1ZDAxMjYtN2IwMC00ZDdkLTk1NGMtNTQxNDNmNzM3ZDFjIiwibmJmIjoxNjEzOTM2NTQ3LCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoiOTM3NjI4MTQwMzEiLCJleHAiOjE2MTQwMjI5NDd9.KsAMmphy71g1nYQPD_wnQ1SsxJBrRGSQ--0r6a6BHCc" -H "Content-Type: application/json" -X GET -d '{"cpf": "93762814031", "phone_number": "71935228778", "loan_value": "1000", "installments": "6"}' http://127.0.0.1:5000/api/v1/loan/jwt
+```
+
+    OBS: "Authorization: Bearer **Token**" : get in login
+
+get
+```
+    {
+    "data": {
+        "12": 0.035, 
+        "18": 0.45, 
+        "24": 0.048, 
+        "36": 0.05, 
+        "6": 0.03
+    }, 
+    "status": true
+    }    
 ```
 
 in the browswer: http://127.0.0.1:5000/index
@@ -245,6 +286,8 @@ Iniciar e Debugar
 Tela inicial
 
 ![](imgs/readme_assets/f01.png)
+
+![](../imgs/readme_assets/f01-2.png)
 
 Simulação
 

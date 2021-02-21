@@ -4,7 +4,10 @@ from flask import (
 )
 from flask_restplus import Resource
 import json
+from flask_jwt_extended import create_access_token, create_refresh_token
+import datetime
 #from flask_mongoengine import Pagination
+
 
 from models import Clientes
 from log import log
@@ -69,10 +72,18 @@ def checkLogin(data):
     cpf = data['cpf']
     phone_number = data['phone_number']
     
-    if data['cpf'] is not None and data['phone_number'] is not None:
+    if cpf is not None and phone_number is not None:
         try:
             custumer = Clientes.objects.get(cpf=cpf, celular=phone_number)
             if custumer:
-                return jsonify(status=True, message='Ok, find custumer')
+                expires = datetime.timedelta(days=1)
+                #access_token = create_access_token(identity=cpf)
+                
+                tokens = {
+                    'access_token': create_access_token(identity=cpf, expires_delta=expires),
+                    'refresh_token': create_refresh_token(identity=cpf, expires_delta=expires)
+                }
+
+                return jsonify(status=True, message='Ok, find custumer', tokens=tokens)
         except Clientes.DoesNotExist:
             return jsonify(status=False, message="no found custumer for cpf: {} and phone number: {}".format(cpf, phone_number))
