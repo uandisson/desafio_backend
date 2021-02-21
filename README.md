@@ -171,7 +171,6 @@ Check customer:
 ```
     curl -i -H "Content-Type: application/json" -X POST -d '{"cpf": "93762814031", "phone_number": "71935228778"}' http://127.0.0.1:5000/api/v1/login
     
-
 ```
 get:
 ```
@@ -285,7 +284,7 @@ Tela inicial
 
 ![](imgs/readme_assets/f01.png)
 
-![](../imgs/readme_assets/f01-2.png)
+![](imgs/readme_assets/f01-2.png)
 
 Simulação
 
