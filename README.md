@@ -169,22 +169,20 @@ Endpoint |HTTP Method | CRUD Method | Result
 
 Check customer:
 ```
-    {
-    "message": "Ok, find custumer", 
-    "status": true, 
-    "tokens": {
-        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYxMzkzNjU0NywianRpIjoiYjI1ZDAxMjYtN2IwMC00ZDdkLTk1NGMtNTQxNDNmNzM3ZDFjIiwibmJmIjoxNjEzOTM2NTQ3LCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoiOTM3NjI4MTQwMzEiLCJleHAiOjE2MTQwMjI5NDd9.KsAMmphy71g1nYQPD_wnQ1SsxJBrRGSQ--0r6a6BHCc", 
-        "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYxMzkzNjU0NywianRpIjoiYmE2NDg4ZDQtNWJjOC00ZDY0LTg2ZDQtYTljZWQxYzY2MzI3IiwibmJmIjoxNjEzOTM2NTQ3LCJ0eXBlIjoicmVmcmVzaCIsInN1YiI6IjkzNzYyODE0MDMxIiwiZXhwIjoxNjE0MDIyOTQ3fQ.jb1kIgJHMEOvgabvgjRCTbmA5FHz4hRBgBoVcxTZgpQ"
-    }
-    }	
+    curl -i -H "Content-Type: application/json" -X POST -d '{"cpf": "93762814031", "phone_number": "71935228778"}' http://127.0.0.1:5000/api/v1/login
+    
 
 ```
 get:
 ```
     {
         "message": "Ok, find custumer", 
-        "status": true
-    }
+        "status": true, 
+        "tokens": {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYxMzkzNjU0NywianRpIjoiYjI1ZDAxMjYtN2IwMC00ZDdkLTk1NGMtNTQxNDNmNzM3ZDFjIiwibmJmIjoxNjEzOTM2NTQ3LCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoiOTM3NjI4MTQwMzEiLCJleHAiOjE2MTQwMjI5NDd9.KsAMmphy71g1nYQPD_wnQ1SsxJBrRGSQ--0r6a6BHCc", 
+            "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYxMzkzNjU0NywianRpIjoiYmE2NDg4ZDQtNWJjOC00ZDY0LTg2ZDQtYTljZWQxYzY2MzI3IiwibmJmIjoxNjEzOTM2NTQ3LCJ0eXBlIjoicmVmcmVzaCIsInN1YiI6IjkzNzYyODE0MDMxIiwiZXhwIjoxNjE0MDIyOTQ3fQ.jb1kIgJHMEOvgabvgjRCTbmA5FHz4hRBgBoVcxTZgpQ"
+        }
+    }	
 
 ```
 
