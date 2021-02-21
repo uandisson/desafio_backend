@@ -31,7 +31,7 @@
                     <td v-else-if="customer.score > 500">
                         <img src="src/assets/imgs/socre_alto.png" alt="" border=3 height=27px width=27px>
                     </td>
-                    <td v-else-if="customer.score < 500">
+                    <td v-else-if="customer.score <= 500">
                         <img src="src/assets/imgs/socre_baixo.png" alt="" border=3 height=27px width=27px>
                     </td>
                     <td>
